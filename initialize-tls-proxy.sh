@@ -15,4 +15,4 @@ docker compose exec certbot \
     -d ${LACONIC_TLS_DOMAIN} \
     --rsa-key-size 4096 \
     --agree-tos \
-    --force-renewal"
+    --force-renewal
