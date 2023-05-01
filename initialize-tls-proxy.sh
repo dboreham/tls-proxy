@@ -3,7 +3,7 @@ if [[ -n "$CERC_SCRIPT_DEBUG" ]]; then
     set -x
 fi
 # TODO: get from the caller
-LACONIC_TLS_DOMAIN=laconic.whichnode.com
+LACONIC_TLS_DOMAIN=example.com
 # When we're called nginx and certbot container are up and running and certbot is sleeping before executing renew
 # So we can now ask certbot to issue our initial cert
 tls_certificate_directory=./certbot/certificates/live/${LACONIC_TLS_DOMAIN}

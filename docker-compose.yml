@@ -1,8 +1,4 @@
 services:
-    webservice:
-        image: crccheck/hello-world
-        ports:
-          - 8000
 
     proxy:
         image: nginx:stable-bullseye
@@ -21,3 +17,11 @@ services:
             - ./certbot/certificates:/etc/letsencrypt
             - ./certbot/challenge:/data-www-challenge
         entrypoint: "/bin/sh -c 'sleep 300; trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
+
+    # Hello-world http container useful for test/debugging the proxy
+    # an actual service would be used for production
+    example-webservice:
+        image: crccheck/hello-world
+        ports:
+          - 8000
+

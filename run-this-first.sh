@@ -7,9 +7,11 @@ mkdir -p ./nginx
 mkdir -p ./certbot/certificates
 mkdir -p ./certbot/challenge
 # TODO: get from the caller
-LACONIC_TLS_DOMAIN=laconic.whichnode.com
+LACONIC_TLS_DOMAIN=example.com
+LACONIC_ORIGIN_SERVICE_URL=http://example-webservice:8000/
 # Expand the config template into the nginx config file
-cat ./nginx-config-template | sed 's/${LACONIC_TLS_DOMAIN}/'${LACONIC_TLS_DOMAIN}'/' > ./nginx/nginx.conf
+cat ./nginx-config-template | sed 's/${LACONIC_TLS_DOMAIN}/'${LACONIC_TLS_DOMAIN}'/' | \
+	sed 's/${LACONIC_ORIGIN_SERVICE_URL}/'${LACONIC_ORIGIN_SERVICE_URL}'/' > ./nginx/nginx.conf
 # Create a self-signed cert so nginx will start without us changing its config between pre and post certbot invocation.
 # Check if we have a cert already
 tls_certificate_directory=./certbot/certificates/live/${LACONIC_TLS_DOMAIN}
