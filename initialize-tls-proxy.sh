@@ -6,6 +6,8 @@ fi
 LACONIC_TLS_DOMAIN=laconic.whichnode.com
 # When we're called nginx and certbot container are up and running and certbot is sleeping before executing renew
 # So we can now ask certbot to issue our initial cert
+tls_certificate_directory=./certbot/certificates/live/${LACONIC_TLS_DOMAIN}
+rm -rf ${tls_certificate_directory}
 # TODO: pass in email from caller
 # TODO: allow staging/dry-run mode
 docker compose exec certbot \
