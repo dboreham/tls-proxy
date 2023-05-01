@@ -11,7 +11,7 @@ LACONIC_TLS_DOMAIN=laconic.whichnode.com
 docker compose exec certbot \
     certbot certonly --webroot -w /data-www-challenge \
     --staging \
-    --email david@bozemanpass.com \
+    --email ${EMAIL} \
     ${LACONIC_TLS_DOMAIN} \
     --rsa-key-size 4000 \
     --agree-tos \
