@@ -12,7 +12,7 @@ docker compose exec certbot \
     certbot certonly --webroot -w /data-www-challenge \
     --staging \
     --email ${EMAIL} \
-    ${LACONIC_TLS_DOMAIN} \
-    --rsa-key-size 4000 \
+    -d ${LACONIC_TLS_DOMAIN} \
+    --rsa-key-size 4096 \
     --agree-tos \
     --force-renewal"
