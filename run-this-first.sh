@@ -15,6 +15,8 @@ cat ./nginx-config-template | sed 's/${LACONIC_TLS_DOMAIN}/'${LACONIC_TLS_DOMAIN
 tls_certificate_directory=./certbot/certificates/live/${LACONIC_TLS_DOMAIN}
 tls_certificate_directory_in_container=/etc/letsencrypt/live/${LACONIC_TLS_DOMAIN}
 tls_certificate_file_name=${tls_certificate_directory}/fullchain.pem
+# TODO: this won't work if there's a delay of more than one day between generating the 
+# self signed cert and starting the certbot enrollment process
 if [[ ! -f ${tls_certificate_file_name} ]] ; then
     echo "Generating self-signed certificate for ${LACONIC_TLS_DOMAIN}:"
     mkdir -p ${tls_certificate_directory}

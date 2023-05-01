@@ -1,6 +1,7 @@
 services:
     webservice:
         image: crccheck/hello-world
+        command: "/bin/sh -c 'while :; do sleep 6h & wait $${!}; nginx -s reload; done & nginx -g \"daemon off;\"'"
         ports:
           - 8000
 
@@ -19,4 +20,4 @@ services:
         volumes: 
             - ./certbot/certificates:/etc/letsencrypt
             - ./certbot/challenge:/data-www-challenge
-        # command: certonly --webroot -w /data-www-challenge --force-renewal --email {email} -d {domain} --agree-tos
+        entrypoint: "/bin/sh -c 'sleep 300; trap exit TERM; while :; do certbot renew; sleep 12h & wait $${!}; done;'"
